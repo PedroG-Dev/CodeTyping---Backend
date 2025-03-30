@@ -25,12 +25,39 @@ class AuthController extends Controller
         ]);
 
         //Generamos un token para el usuario
-        //$token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'message' => 'Usuario creado correctamente',
+            'user' => $user,
+            'token' => $token
         ], 201);
+    }
 
+    public function login(Request $request)
+    {
+        //Validacion de las credenciales
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
 
+        //Verificar las credenciales
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Credenciales invalidas'
+            ], 401);
+        }
+
+        //Generar token
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Login exitoso',
+            'user' => $user,
+            'token' => $token
+        ], 200);
     }
 }
