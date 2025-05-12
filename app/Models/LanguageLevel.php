@@ -2,28 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProgrammingLanguage extends Model
+class LanguageLevel extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'programming_language_id',
         'name',
         'slug',
-        'icon',
         'description',
         'is_active'
     ];
 
-    protected $casts = [
-        'is_active' => 'boolean'
-    ];
-
-    public function languageLevels()
+    public function programmingLanguage()
     {
-        return $this->hasMany(LanguageLevel::class);
+        return $this->belongsTo(ProgrammingLanguage::class);
     }
 
     public function exercises()
