@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgrammingLanguageController;
 use App\Http\Controllers\LanguageLevelController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\CompletedExerciseController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -21,4 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('programming-languages', ProgrammingLanguageController::class);
     Route::apiResource('language-levels', LanguageLevelController::class);
     Route::apiResource('exercises', ExerciseController::class);
+
+    // Completed Exercises Routes
+    Route::apiResource('completed-exercises', CompletedExerciseController::class)->only(['index', 'store', 'show', 'update']);
 });
