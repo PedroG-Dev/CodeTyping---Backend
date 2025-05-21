@@ -39,11 +39,26 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    /**
+     * The achievements that the user has unlocked.
+     */
+    public function achievements()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsToMany(Achievement::class)
+            ->withPivot('unlocked_at')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get completed exercises for this user.
+     */
+    public function completedExercises()
+    {
+        return $this->hasMany(CompletedExercise::class);
     }
 }

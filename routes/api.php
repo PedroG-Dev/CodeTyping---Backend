@@ -8,6 +8,8 @@ use App\Http\Controllers\ProgrammingLanguageController;
 use App\Http\Controllers\LanguageLevelController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\CompletedExerciseController;
+use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\AchievementUserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -24,5 +26,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('exercises', ExerciseController::class);
 
     // Completed Exercises Routes
+    Route::get('/completed-exercises/statistics', [CompletedExerciseController::class, 'statistics']);
     Route::apiResource('completed-exercises', CompletedExerciseController::class)->only(['index', 'store', 'show', 'update']);
+
+    // Achievements Routes
+    Route::get('/my-achievements', [AchievementController::class, 'userAchievements']);
+    Route::get('/my-progress', [AchievementController::class, 'userProgress']);
+    Route::apiResource('achievements', AchievementController::class);
+    Route::apiResource('achievement-users', AchievementUserController::class);
 });

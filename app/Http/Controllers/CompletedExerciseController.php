@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\CompletedExercise;
 use App\Models\Exercise;
+use App\Services\AchievementService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CompletedExerciseController extends Controller
 {
+    protected $achievementService;
+
+    public function __construct(AchievementService $achievementService)
+    {
+        $this->achievementService = $achievementService;
+    }
+
     /**
      * Display a listing of completed exercises for the authenticated user.
      */
@@ -55,7 +63,13 @@ class CompletedExerciseController extends Controller
             'completed_at' => now()
         ]);
 
-        return response()->json($completedExercise, 201);
+        // Check and unlock achievements
+        $unlockedAchievements = $this->achievementService->processExerciseCompletion(Auth::user(), $completedExercise);
+
+        return response()->json([
+            'completed_exercise' => $completedExercise,
+            'unlocked_achievements' => $unlockedAchievements
+        ], 201);
     }
 
     /**
@@ -79,9 +93,13 @@ class CompletedExerciseController extends Controller
                 'completed_at' => now()
             ]);
 
+            // Check and unlock achievements
+            $unlockedAchievements = $this->achievementService->checkAchievements(Auth::user());
+
             return response()->json([
                 'message' => 'Score updated successfully',
-                'completed_exercise' => $completedExercise
+                'completed_exercise' => $completedExercise,
+                'unlocked_achievements' => $unlockedAchievements
             ]);
         }
 
