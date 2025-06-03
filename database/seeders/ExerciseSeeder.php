@@ -11,20 +11,17 @@ class ExerciseSeeder extends Seeder
 {
     public function run(): void
     {
-        $javascript = ProgrammingLanguage::where('slug', 'javascript')->first();
-
-        $basicLevel = LanguageLevel::where('programming_language_id', $javascript->id)
-            ->where('slug', 'basico')->first();
-        $intermediateLevel = LanguageLevel::where('programming_language_id', $javascript->id)
-            ->where('slug', 'intermedio')->first();
-        $advancedLevel = LanguageLevel::where('programming_language_id', $javascript->id)
-            ->where('slug', 'avanzado')->first();
+        // Usar IDs directos basados en tu estructura existente
+        $javascriptId = 1; // JavaScript
+        $basicLevelId = 1; // Básico
+        $intermediateLevelId = 2; // Intermedio
+        $advancedLevelId = 3; // Avanzado
 
         $exercises = [
             // Nivel Básico
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $basicLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $basicLevelId,
                 'title' => 'Hello World',
                 'slug' => 'javascript-basico-hello-world',
                 'description' => 'Escribe un programa que imprima "Hello World" en la consola.',
@@ -36,8 +33,8 @@ greet();',
                 'is_active' => true
             ],
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $basicLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $basicLevelId,
                 'title' => 'Variables y Operaciones',
                 'slug' => 'javascript-basico-variables',
                 'description' => 'Declara variables y realiza operaciones básicas.',
@@ -51,8 +48,8 @@ console.log(`¿Soy estudiante? ${esEstudiante}`);',
                 'is_active' => true
             ],
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $basicLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $basicLevelId,
                 'title' => 'Función Suma',
                 'slug' => 'javascript-basico-suma',
                 'description' => 'Crea una función que sume dos números.',
@@ -67,8 +64,8 @@ console.log(`La suma es: ${resultado}`);',
 
             // Nivel Intermedio
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $intermediateLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $intermediateLevelId,
                 'title' => 'Array Methods',
                 'slug' => 'javascript-intermedio-array-methods',
                 'description' => 'Utiliza métodos de arrays para manipular datos.',
@@ -84,8 +81,8 @@ console.log("Suma total:", suma);',
                 'is_active' => true
             ],
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $intermediateLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $intermediateLevelId,
                 'title' => 'Objetos y Métodos',
                 'slug' => 'javascript-intermedio-objetos',
                 'description' => 'Trabaja con objetos y sus métodos.',
@@ -109,8 +106,8 @@ persona.cumplirAnios();',
                 'is_active' => true
             ],
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $intermediateLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $intermediateLevelId,
                 'title' => 'Async/Await',
                 'slug' => 'javascript-intermedio-async-await',
                 'description' => 'Implementa funciones asíncronas con async/await.',
@@ -134,8 +131,8 @@ obtenerDatos();',
 
             // Nivel Avanzado
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $advancedLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $advancedLevelId,
                 'title' => 'Closures y Scope',
                 'slug' => 'javascript-avanzado-closures',
                 'description' => 'Implementa closures para encapsular datos.',
@@ -171,8 +168,8 @@ console.log(miContador.obtenerValor()); // 5',
                 'is_active' => true
             ],
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $advancedLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $advancedLevelId,
                 'title' => 'Prototype Pattern',
                 'slug' => 'javascript-avanzado-prototype',
                 'description' => 'Utiliza prototipos para crear objetos reutilizables.',
@@ -199,8 +196,8 @@ coche.frenar();',
                 'is_active' => true
             ],
             [
-                'programming_language_id' => $javascript->id,
-                'language_level_id' => $advancedLevel->id,
+                'programming_language_id' => $javascriptId,
+                'language_level_id' => $advancedLevelId,
                 'title' => 'Generator Functions',
                 'slug' => 'javascript-avanzado-generators',
                 'description' => 'Implementa generadores para iteración controlada.',
