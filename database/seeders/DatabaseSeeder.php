@@ -19,5 +19,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Solo ejecutar seeder de ejercicios (lenguajes y niveles ya existen)
+        $this->call([
+            ExerciseSeeder::class,
+        ]);
     }
 }
