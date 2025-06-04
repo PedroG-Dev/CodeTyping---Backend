@@ -24,7 +24,7 @@ class ExerciseSeeder extends Seeder
         $phpId = 5;
         $rubyId = 6;
 
-        // IDs de niveles para otros lenguajes
+        // IDs de niveles corregidos (12 y 13 no existen)
         $pyBasicId = 4;
         $pyIntermediateId = 5;
         $pyAdvancedId = 6;
@@ -35,15 +35,15 @@ class ExerciseSeeder extends Seeder
 
         $cppBasicId = 10;
         $cppIntermediateId = 11;
-        $cppAdvancedId = 12;
+        $cppAdvancedId = 14; // Era 12, pero no existe, ahora es 14
 
-        $phpBasicId = 13;
-        $phpIntermediateId = 14;
-        $phpAdvancedId = 15;
+        $phpBasicId = 15;     // Era 13, pero no existe, ahora es 15
+        $phpIntermediateId = 16; // Era 14, ahora es 16
+        $phpAdvancedId = 17;     // Era 15, ahora es 17
 
-        $rubyBasicId = 16;
-        $rubyIntermediateId = 17;
-        $rubyAdvancedId = 18;
+        $rubyBasicId = 18;       // Era 16, ahora es 18
+        $rubyIntermediateId = 19; // Era 17, ahora es 19
+        $rubyAdvancedId = 20;     // Era 18, ahora es 20
 
         $exercises = [
             // Nivel Básico
