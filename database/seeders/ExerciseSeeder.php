@@ -356,8 +356,7 @@ persona.cumplir_anos()',
 
 for clave, valor in estudiante.items():
     if isinstance(valor, list):
-        print(f"{clave}: {',
-                '.join(valor)}")
+        print(f"{clave}: {", ".join(valor)}")
     else:
         print(f"{clave}: {valor}")',
                 'is_active' => true
